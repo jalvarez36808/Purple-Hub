@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Purple Buzz - Work Detail Page</title>
+    <title>Purple Hub - Work Detail</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
@@ -16,9 +16,25 @@
     <link rel="stylesheet" href="assets/css/templatemo.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
+    <style>
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -0.125rem;
+            margin-left: 0.125rem;
+        }
+
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+    </style>
 <!--
     
-TemplateMo 561 Purple Buzz
+
 
 https://templatemo.com/tm-561-purple-buzz
 
@@ -31,7 +47,7 @@ https://templatemo.com/tm-561-purple-buzz
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand h1" href="index.html">
                 <i class='bx bx-buildings bx-sm text-dark'></i>
-                <span class="text-dark h4">Purple</span> <span class="text-primary h4">Buzz</span>
+                <span class="text-dark h4">Purple</span> <span class="text-primary h4">Hub</span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-success" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -43,30 +59,33 @@ https://templatemo.com/tm-561-purple-buzz
                         <li class="nav-item">
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="index.html">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="about.html">About</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn-outline-primary rounded-pill px-3 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Menu
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="blank page temp.html">Services</a></li>
+                                <li><a class="dropdown-item" href="blank page temp.html">Resources</a></li>
+                                <li><a class="dropdown-item" href="blank page temp.html">Guidance</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="work.html">Work</a>
+                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="#">Library</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="pricing.html">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="contact.html">Contact</a>
+                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="#">Contact</a>
                         </li>
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
-                    <a class="nav-link" href="#"><i class='bx bx-bell bx-sm bx-tada-hover text-primary'></i></a>
-                    <a class="nav-link" href="#"><i class='bx bx-cog bx-sm text-primary'></i></a>
-                    <a class="nav-link" href="#"><i class='bx bx-user-circle bx-sm text-primary'></i></a>
+                    <a class="nav-link" href="about.html"><i class='bx bx-info-circle bx-sm text-primary'></i></a>
+                    <a class="nav-link" href="blank page temp.html"><i class='bx bx-help-circle bx-sm text-primary'></i></a>
+                    <a class="nav-link" href="blank page temp.html"><i class='bx bx-envelope bx-sm text-primary'></i></a>
                 </div>
             </div>
         </div>
     </nav>
     <!-- Close Header -->
-
 
     <!-- Start Banner Hero -->
     <div id="work_single_banner" class="bg-light w-100">
