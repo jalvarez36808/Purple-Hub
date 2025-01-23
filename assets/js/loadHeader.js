@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log('DOM fully loaded and parsed');
-    fetch('../Components/header.html')
+    fetch('header.html')
         .then(response => {
             console.log('Fetch response:', response);
             if (!response.ok) {
