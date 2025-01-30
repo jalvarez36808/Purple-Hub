@@ -4,7 +4,7 @@ Purple Hub is a compassionate, web-based platform designed to assist individuals
 
 ## Our Mission
 
-At Purple Hub, our mission is to offer clear, actionable steps for those navigating the overwhelming aftermath of a car accident involving the loss of a loved one. We aim to provide emotional support, practical guidance, and accessible resources to help users manage this challenging situation.
+At Purple Hub, our mission is to offer clear, actionable steps for those navigating the overwhelming aftermath of a car accident involving the loss of a loved one. We aim to provide emotional support, practical guidance, and accessible resources to help users manage their challenging situation.
 
 ## Key Features
 
@@ -13,27 +13,11 @@ At Purple Hub, our mission is to offer clear, actionable steps for those navigat
 - **Contact Support**: A dedicated section to help users reach out for additional assistance or inquiries.
 - **Interactive Tools**: Features like forms and checklists to track progress and manage tasks efficiently.
 
-## Installation
 
-To run Purple Hub locally, follow these steps:
-
-1. **Clone the Repository**:
-
-   ```bash
-   git clone https://github.com/jalvarez36808/Purple-Hub.git
-   ```
-
-2. **Navigate to the Project Directory**:
-
-   ```bash
-   cd Purple-Hub
-   ```
-
-3. **Open `index.html` in Your Preferred Web Browser**.
 
 ## Usage
 
-- **Navigate Through Steps**: Use the checklist to guide you through the necessary actions, from handling immediate legal concerns to finding emotional support.
+- **Navigate Through Steps**: Use the checklist to guide you through the necessary actions. 
 - **Explore Resources**: Visit linked pages for additional tools, including counseling and legal guidance.
 - **Track Your Progress**: Use interactive features to ensure every essential step is completed.
 
