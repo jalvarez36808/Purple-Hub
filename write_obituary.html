@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Write an Obituary</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <!-- Load Require CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font CSS -->
+    <link href="assets/css/boxicon.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Tempalte CSS -->
+    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <style>
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -0.125rem;
+            margin-left: 0.125rem;
+        }
+
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/loadHeader.js"></script>
+    <!-- Close Header-->
+    
+    <!-- Content Section -->
+    <section class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="h2 text-primary mb-4">Writing an Obituary</h1>
+
+                <!-- Quick Tools -->
+                <div class="d-flex gap-2 mb-4">
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#templateModal">
+                        <i class='bx bx-file'></i> Use Template
+                    </a>
+                    <a href="assets/templates/obituary_template.docx" class="btn btn-outline-primary">
+                        <i class='bx bx-download'></i> Download Template
+                    </a>
+                    <a href="#" class="btn btn-outline-primary" onclick="saveProgress()">
+                        <i class='bx bx-save'></i> Save Draft
+                    </a>
+                </div>
+
+                <!-- Basic Information Form -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4 mb-3">Essential Information</h3>
+                    <form id="obituaryForm">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" placeholder="Include maiden name if applicable">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Date of Death</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Place of Death</label>
+                            <input type="text" class="form-control" placeholder="City, State">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Writing Guidelines -->
+                <div class="accordion" id="writingGuidelines">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#structure">
+                                Obituary Structure
+                            </button>
+                        </h2>
+                        <div id="structure" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <ol class="light-300">
+                                    <li>Announcement of Death</li>
+                                    <li>Biographical Information</li>
+                                    <li>Family Members</li>
+                                    <li>Life Story & Achievements</li>
+                                    <li>Funeral Service Details</li>
+                                    <li>Special Messages or Requests</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tips">
+                                Writing Tips
+                            </button>
+                        </h2>
+                        <div id="tips" class="accordion-collapse collapse">
+                            <div class="accordion-body light-300">
+                                <ul>
+                                    <li>Begin with basic facts about the death</li>
+                                    <li>Include significant life events and achievements</li>
+                                    <li>Mention surviving family members</li>
+                                    <li>Add personal touches that capture their personality</li>
+                                    <li>Proofread carefully for accuracy</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Editor -->
+                <div class="card mt-4 p-4">
+                    <h3 class="h4 mb-3">Obituary Text</h3>
+                    <div class="mb-3">
+                        <textarea class="form-control" id="obituaryText" rows="10" 
+                            placeholder="Start writing here..."></textarea>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <small class="text-muted">Word count: <span id="wordCount">0</span></small>
+                        <div class="btn-group">
+                            <button class="btn btn-outline-secondary btn-sm">
+                                <i class='bx bx-bold'></i>
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm">
+                                <i class='bx bx-italic'></i>
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm">
+                                <i class='bx bx-underline'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publishing Options -->
+                <div class="card mt-4 p-4">
+                    <h3 class="h4 mb-3">Publishing Options</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card h-100 p-3">
+                                <h5>Newspaper Publication</h5>
+                                <ul class="light-300">
+                                    <li>Local newspapers</li>
+                                    <li>Online news websites</li>
+                                    <li>Industry publications</li>
+                                </ul>
+                                <button class="btn btn-outline-primary mt-auto">Find Newspapers</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 p-3">
+                                <h5>Online Memorial</h5>
+                                <ul class="light-300">
+                                    <li>Social media announcement</li>
+                                    <li>Memorial websites</li>
+                                    <li>Funeral home website</li>
+                                </ul>
+                                <button class="btn btn-outline-primary mt-auto">Create Memorial</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost Information -->
+                <div class="alert alert-info mt-4">
+                    <h4 class="h5">Publication Costs</h4>
+                    <p class="mb-0">Newspaper obituary costs vary by length and publication. Average costs range from $200-$600. Online publications may be free or have minimal costs.</p>
+                </div>
+
+                <!-- Help Section -->
+                <div class="card bg-light mt-4 p-4">
+                    <h4 class="h5">Need Help?</h4>
+                    <p class="light-300 mb-0">Our writers can help you craft a meaningful obituary. Call us at <a href="tel:010-020-0340">010-020-0340</a> or see our <a href="obituary_writing_guide.html">detailed writing guide</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Template Modal -->
+    <div class="modal fade" id="templateModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Choose a Template</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Template options would go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/loadFooter.js"></script>
+    <!-- Close Footer -->
+    
+    <!-- Scripts -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/templatemo.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+
+        function saveProgress() {
+            // Implementation for saving draft
+        }
+
+        // Word count implementation
+        document.getElementById('obituaryText').addEventListener('input', function() {
+            const words = this.value.trim().split(/\s+/).length;
+            document.getElementById('wordCount').textContent = words;
+        });
+    </script>
+</body>
+</html> 
