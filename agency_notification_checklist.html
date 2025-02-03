@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Agency Notification Checklist</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <!-- Load Require CSS -->
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font CSS -->
+    <link href="assets/css/boxicon.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Tempalte CSS -->
+    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <style>
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -0.125rem;
+            margin-left: 0.125rem;
+        }
+
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/loadHeader.js"></script>
+    <!-- Close Header-->
+    
+    <!-- Content Section -->
+    <section class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="h2 text-primary mb-4">Agency Notification Checklist</h1>
+
+                <!-- Print Button -->
+                <div class="d-print-none mb-4">
+                    <button class="btn btn-primary" onclick="window.print()">
+                        <i class='bx bx-printer'></i> Print Checklist
+                    </button>
+                    <a href="assets/downloads/agency_checklist.pdf" class="btn btn-outline-primary">
+                        <i class='bx bx-download'></i> Download PDF
+                    </a>
+                </div>
+
+                <!-- Document Gathering -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Step 1: Gather Required Documents</h3>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="doc1">
+                        <label class="form-check-label" for="doc1">
+                            Death Certificate (multiple certified copies)
+                        </label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="doc2">
+                        <label class="form-check-label" for="doc2">
+                            Deceased's Social Security Card
+                        </label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="doc3">
+                        <label class="form-check-label" for="doc3">
+                            Birth Certificate
+                        </label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="doc4">
+                        <label class="form-check-label" for="doc4">
+                            Marriage Certificate (if applicable)
+        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="doc5">
+                        <label class="form-check-label" for="doc5">
+                            Military Discharge Papers (DD-214) if applicable
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Federal Agencies -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Step 2: Federal Agency Notifications</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Agency</th>
+                                    <th>Contact Method</th>
+                                    <th>Documents Needed</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Social Security Administration</td>
+                                    <td>1-800-772-1213 or local office</td>
+                                    <td>Death certificate, SS card</td>
+                                    <td>
+                                        <select class="form-select form-select-sm">
+                                            <option>Not Started</option>
+                                            <option>In Progress</option>
+                                            <option>Completed</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Internal Revenue Service</td>
+                                    <td>File Form 1041</td>
+                                    <td>Death certificate, tax records</td>
+                                    <td>
+                                        <select class="form-select form-select-sm">
+                                            <option>Not Started</option>
+                                            <option>In Progress</option>
+                                            <option>Completed</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <!-- Add more rows for other federal agencies -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- State Agencies -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Step 3: State Agency Notifications</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Agency</th>
+                                    <th>Contact Method</th>
+                                    <th>Documents Needed</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Department of Motor Vehicles</td>
+                                    <td>Visit local office</td>
+                                    <td>Death certificate, driver's license</td>
+                                    <td>
+                                        <select class="form-select form-select-sm">
+                                            <option>Not Started</option>
+                                            <option>In Progress</option>
+                                            <option>Completed</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <!-- Add more rows for other state agencies -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Contact Log -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Contact Log</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Agency</th>
+                                    <th>Contact Person</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="date" class="form-control form-control-sm"></td>
+                                    <td><input type="text" class="form-control form-control-sm"></td>
+                                    <td><input type="text" class="form-control form-control-sm"></td>
+                                    <td><input type="text" class="form-control form-control-sm"></td>
+                                </tr>
+                                <!-- Add more rows for additional contacts -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Follow-up Tasks -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Follow-up Tasks</h3>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="follow1">
+                        <label class="form-check-label" for="follow1">
+                            Request confirmation letters from each agency
+                        </label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="follow2">
+                        <label class="form-check-label" for="follow2">
+                            File copies of all correspondence
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="follow3">
+                        <label class="form-check-label" for="follow3">
+                            Calendar follow-up dates for pending items
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Notes Section -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Additional Notes</h3>
+                    <textarea class="form-control" rows="4" placeholder="Add any additional notes or reminders here..."></textarea>
+                </div>
+
+                <div class="alert alert-info mt-4 d-print-none">
+                    <h4 class="h5">Need Assistance?</h4>
+                    <p class="mb-0">Our support team can help you complete these notifications. Contact us at <a href="tel:010-020-0340">010-020-0340</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer" class="d-print-none"></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/loadFooter.js"></script>
+    <!-- Close Footer -->
+    
+    <!-- Scripts -->
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/loadHeader.js"></script>
+        <script src="assets/js/loadFooter.js"></script>
+</body>
+</html> 

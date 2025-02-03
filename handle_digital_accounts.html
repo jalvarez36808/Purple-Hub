@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Handle Digital Accounts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <!-- Load Require CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font CSS -->
+    <link href="assets/css/boxicon.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Tempalte CSS -->
+    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <style>
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -0.125rem;
+            margin-left: 0.125rem;
+        }
+
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/loadHeader.js"></script>
+    <!-- Close Header-->
+    
+    <!-- Content Section -->
+    <section class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="h2 text-primary mb-4">Managing Digital Accounts</h1>
+
+                <div class="alert alert-warning mb-4">
+                    <h4 class="h5"><i class='bx bx-shield-quarter'></i> Security First</h4>
+                    <p class="mb-0">Before proceeding, ensure you have legal authority to access these accounts. Consider consulting with a lawyer about digital estate laws in your state.</p>
+                </div>
+
+                <!-- Account Categories -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Digital Account Categories</h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 p-3">
+                                <h5><i class='bx bx-money'></i> Financial</h5>
+                                <ul class="light-300">
+                                    <li>Online banking</li>
+                                    <li>Investment accounts</li>
+                                    <li>PayPal/Venmo</li>
+                                    <li>Cryptocurrency wallets</li>
+                                    <li>Online shopping accounts</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 p-3">
+                                <h5><i class='bx bx-group'></i> Social Media</h5>
+                                <ul class="light-300">
+                                    <li>Facebook</li>
+                                    <li>Instagram</li>
+                                    <li>Twitter/X</li>
+                                    <li>LinkedIn</li>
+                                    <li>YouTube</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 p-3">
+                                <h5><i class='bx bx-cloud'></i> Digital Storage</h5>
+                                <ul class="light-300">
+                                    <li>Email accounts</li>
+                                    <li>Cloud storage</li>
+                                    <li>Photo sharing sites</li>
+                                    <li>Document storage</li>
+                                    <li>Password managers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 p-3">
+                                <h5><i class='bx bx-tv'></i> Subscription Services</h5>
+                                <ul class="light-300">
+                                    <li>Streaming services</li>
+                                    <li>Gaming accounts</li>
+                                    <li>Music services</li>
+                                    <li>Software subscriptions</li>
+                                    <li>Online memberships</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Steps -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Step-by-Step Process</h3>
+                    <div class="timeline-steps">
+                        <div class="timeline-step mb-3">
+                            <h5>1. Inventory Accounts</h5>
+                            <div class="card bg-light p-3">
+                                <ul class="light-300 mb-0">
+                                    <li>Check email for account statements</li>
+                                    <li>Review browser bookmarks</li>
+                                    <li>Check password managers</li>
+                                    <li>Look through financial records</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step mb-3">
+                            <h5>2. Gather Documentation</h5>
+                            <div class="card bg-light p-3">
+                                <ul class="light-300 mb-0">
+                                    <li>Death certificate</li>
+                                    <li>Proof of authority (executor documents)</li>
+                                    <li>Government ID</li>
+                                    <li>Account information</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step mb-3">
+                            <h5>3. Contact Platforms</h5>
+                            <div class="card bg-light p-3">
+                                <ul class="light-300 mb-0">
+                                    <li>Follow platform-specific procedures</li>
+                                    <li>Submit required documentation</li>
+                                    <li>Request account closure or memorialization</li>
+                                    <li>Download important data</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platform-Specific Instructions -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Major Platform Procedures</h3>
+                    <div class="accordion" id="platformAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#facebook">
+                                    Facebook
+                                </button>
+                            </h2>
+                            <div id="facebook" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    <p class="light-300">Choose between:</p>
+                                    <ul>
+                                        <li>Memorialization (preserves account)</li>
+                                        <li>Deletion (removes account)</li>
+                                    </ul>
+                                    <a href="https://facebook.com/help/" class="btn btn-sm btn-outline-primary">Facebook Memorial Page</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more accordion items for other platforms -->
+                    </div>
+                </div>
+
+                <!-- Digital Asset Tracking -->
+                <div class="card p-4 mb-4">
+                    <h3 class="h4">Digital Asset Tracker</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Platform</th>
+                                    <th>Account Info</th>
+                                    <th>Action Needed</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control form-control-sm"></td>
+                                    <td><input type="text" class="form-control form-control-sm"></td>
+                                    <td>
+                                        <select class="form-select form-select-sm">
+                                            <option>Close Account</option>
+                                            <option>Memorialize</option>
+                                            <option>Transfer</option>
+                                            <option>Download Data</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-select form-select-sm">
+                                            <option>Pending</option>
+                                            <option>In Progress</option>
+                                            <option>Completed</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Security Tips -->
+                <div class="alert alert-info mt-4">
+                    <h4 class="h5">Security Best Practices</h4>
+                    <ul class="mb-0">
+                        <li>Never share login credentials</li>
+                        <li>Use secure methods to store account information</li>
+                        <li>Keep detailed records of all actions taken</li>
+                        <li>Consider using a password manager</li>
+                    </ul>
+                </div>
+
+                <!-- Help Section -->
+                <div class="card bg-light mt-4 p-4">
+                    <h4 class="h5">Need More Help?</h4>
+                    <p class="light-300 mb-0">Our digital asset specialists can guide you through this process. Contact us at <a href="tel:010-020-0340">010-020-0340</a> or see our <a href="digital_account_management_guide.html">detailed guide</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/loadFooter.js"></script>
+    <!-- Close Footer -->
+    
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/loadHeader.js"></script>
+    <script src="assets/js/loadFooter.js"></script>
+</body>
+</html> 
