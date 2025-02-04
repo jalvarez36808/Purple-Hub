@@ -1,0 +1,9 @@
+---
+description: How AI should make a landing page
+globs: .html
+---
+
+# Your rule content
+When creating new html files, use [blank page temp.html](mdc:blank page temp.html) as a constant outline for the head, body, footer, scripts, etc. 
+
+

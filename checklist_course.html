@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Checklist Course</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <!-- Load Require CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font CSS -->
+    <link href="assets/css/boxicon.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Load Template CSS -->
+    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <style>
+        .course-section {
+            margin-bottom: 2rem;
+        }
+        .dropdown-toggle::after {
+            display: inline-block;
+            margin-left: 0.255em;
+            vertical-align: 0.255em;
+            content: "";
+            border-top: 0.3em solid;
+            border-right: 0.3em solid transparent;
+            border-bottom: 0;
+            border-left: 0.3em solid transparent;
+        }
+        .dropdown-toggle.collapsed::after {
+            transform: rotate(-90deg);
+        }
+        .checklist-item {
+            padding: 0.5rem 1rem;
+            border-left: 3px solid #6266ea;
+            margin: 0.5rem 0;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+        .checklist-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+            box-shadow: 0 2px 4px rgba(98, 102, 234, 0.1);
+        }
+        .popup-indicator {
+            font-size: 0.8rem;
+            color: #6266ea;
+            margin-left: 0.5rem;
+            font-weight: 500;
+        }
+        .section-title {
+            color: #212934;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            background-color: #ffffff;
+            border-left: 5px solid #6266ea;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .section-title:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        .subsection-title {
+            color: #212934;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            border-left: 3px solid #6266ea;
+        }
+        .subsection-title:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+            box-shadow: 0 2px 4px rgba(98, 102, 234, 0.1);
+        }
+        #main-content.container {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        h1.text-center {
+            color: #212934;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .course-section {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/loadHeader.js"></script>
+
+    <!-- Start Content -->
+    <div class="container py-5" id="main-content">
+        <h1 class="text-center mb-5">Checklist Course</h1>
+
+        <!-- Section 1 -->
+        <div class="course-section">
+            <h2 class="section-title dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#section1" aria-expanded="true">
+                1. Immediately After the Death of a Loved One
+            </h2>
+            <div id="section1" class="collapse show">
+                <!-- Notifications -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#notifications" aria-expanded="false">
+                        Notifications
+                    </h3>
+                    <div id="notifications" class="collapse">
+                        <div class="checklist-item" data-bs-toggle="modal" data-bs-target="#contactFamilyModal">Contact Immediate Family <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item" data-bs-toggle="modal" data-bs-target="#notifyFriendsModal">Notify Close Friends and Extended Family <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item" data-bs-toggle="modal" data-bs-target="#notifyDoctorModal">Notify Descendant's Doctor <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item" data-bs-toggle="modal" data-bs-target="#notifyEmployerModal">Notify Descendant's Employer <span class="popup-indicator">(Popup)</span></div>
+                    </div>
+                </div>
+
+                <!-- Care -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#care" aria-expanded="false">
+                        Care
+                    </h3>
+                    <div id="care" class="collapse">
+                        <div class="checklist-item" data-bs-toggle="modal" data-bs-target="#childrenCareModal">Descendant's Children <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item" data-bs-toggle="modal" data-bs-target="#petCareModal">Pet Care <span class="popup-indicator">(Popup)</span></div>
+                    </div>
+                </div>
+
+                <!-- Descendant's Wishes -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#wishes" aria-expanded="false">
+                        Descendant's Wishes
+                    </h3>
+                    <div id="wishes" class="collapse">
+                        <div class="checklist-item" data-bs-toggle="modal" data-bs-target="#descendantWishesModal">Determine Descendant's Wishes <span class="popup-indicator">(Popup/Full Page)</span></div>
+                    </div>
+                </div>
+
+                <!-- Descendant's Body -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#body" aria-expanded="false">
+                        Descendant's Body
+                    </h3>
+                    <div id="body" class="collapse">
+                        <div class="checklist-item" data-bs-toggle="modal" data-bs-target="#bodyOptionsModal">Decide on Cremation or Burial <span class="popup-indicator">(Popup/Full Page)</span></div>
+                        <div class="checklist-item">Arrange Transportation of the Body <span class="popup-indicator">(Popup/Full Page)</span></div>
+                    </div>
+                </div>
+
+                <!-- Funeral Home -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#funeral" aria-expanded="false">
+                        Funeral Home
+                    </h3>
+                    <div id="funeral" class="collapse">
+                        <div class="checklist-item">Choose a Funeral Home <span class="popup-indicator">(Popup)</span></div>
+                    </div>
+                </div>
+
+                <!-- Will or Probate -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#will" aria-expanded="false">
+                        Descendant's Will or Probate
+                    </h3>
+                    <div id="will" class="collapse">
+                        <div class="checklist-item">How to Determine if There is a Will <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Is Probate Necessary? <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">What to Expect in Probate <span class="popup-indicator">(Popup)</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="course-section">
+            <h2 class="section-title dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#section2">
+                2. Within Days of the Death of a Loved One
+            </h2>
+            <div id="section2" class="collapse">
+                <!-- Death Certificate -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#deathCert" aria-expanded="false">
+                        Obtaining a Death Certificate
+                    </h3>
+                    <div id="deathCert" class="collapse">
+                        <div class="checklist-item">How to Obtain a Death Certificate <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Obtain Copies of Death Certificate <span class="popup-indicator">(Popup)</span></div>
+                    </div>
+                </div>
+
+                <!-- Obituary Options -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#obituary" aria-expanded="false">
+                        Obituary Options
+                    </h3>
+                    <div id="obituary" class="collapse">
+                        <div class="checklist-item">How to Write an Obituary <span class="popup-indicator">(Full Page)</span></div>
+                        <div class="checklist-item">Create a Facebook Memorial Page <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Publish in Legacy.com <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Submit to Newspapers <span class="popup-indicator">(Popup)</span></div>
+                    </div>
+                </div>
+
+                <!-- Making Funeral Arrangements -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#arrangements" aria-expanded="false">
+                        Making Funeral Arrangements
+                    </h3>
+                    <div id="arrangements" class="collapse">
+                        <div class="checklist-item">Gather Information About Loved One <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Collect Memories for Funeral Service <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Arrange for Officiant/Clergy <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Arrange Music <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Request Flowers or Donations <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Ask for Eulogies <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Set Up a Guest Book <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Share Funeral Arrangements <span class="popup-indicator">(Popup)</span></div>
+                    </div>
+                </div>
+
+                <!-- Financial Assistance -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#financial" aria-expanded="false">
+                        Financial Assistance
+                    </h3>
+                    <div id="financial" class="collapse">
+                        <!-- Crowdfunding -->
+                        <div class="ms-4">
+                            <h4 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#crowdfunding" aria-expanded="false">
+                                Crowdfunding Platforms
+                            </h4>
+                            <div id="crowdfunding" class="collapse">
+                                <div class="checklist-item">GoFundMe <span class="popup-indicator">(Popup)</span></div>
+                                <div class="checklist-item">GiveButter <span class="popup-indicator">(Popup)</span></div>
+                                <div class="checklist-item">Donorbox <span class="popup-indicator">(Popup)</span></div>
+                                <div class="checklist-item">Classy <span class="popup-indicator">(Popup)</span></div>
+                                <div class="checklist-item">Snap! Raise <span class="popup-indicator">(Popup)</span></div>
+                                <div class="checklist-item">FundRazr <span class="popup-indicator">(Popup)</span></div>
+                                <div class="checklist-item">Facebook/Instagram Fundraisers <span class="popup-indicator">(Popup)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="course-section">
+            <h2 class="section-title dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#section3">
+                3. What to Do After 2 Weeks of the Death of a Loved One
+            </h2>
+            <div id="section3" class="collapse">
+                <!-- Financial and Postal Accounts -->
+                <div class="ms-4">
+                    <h3 class="subsection-title dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#accounts" aria-expanded="false">
+                        Close or Redirect Financial and Postal Accounts
+                    </h3>
+                    <div id="accounts" class="collapse">
+                        <div class="checklist-item">Bank Accounts <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Credit or Debit Cards <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Postal Mail <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Digital Accounts <span class="popup-indicator">(Popup)</span></div>
+                        <div class="checklist-item">Credit Bureaus <span class="popup-indicator">(Popup)</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/loadFooter.js"></script>
+
+    <!-- Scripts -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/templatemo.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        // Add collapsed class to dropdown toggles when collapsed
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    this.classList.toggle('collapsed');
+                });
+            });
+        });
+    </script>
+
+    <!-- Contact Immediate Family Modal -->
+    <div class="modal fade" id="contactFamilyModal" tabindex="-1" aria-labelledby="contactFamilyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactFamilyModalLabel">Contacting Immediate Family</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">In the difficult moments following a loved one's passing, connecting with immediate family is crucial for support and necessary decision-making.</p>
+
+                    <h6 class="fw-bold">Steps to Contact Immediate Family:</h6>
+                    <ol class="light-300">
+                        <li class="mb-2">
+                            <strong>Reach Out Promptly:</strong>
+                            <p>Notify key family members via personal phone calls or in-person meetings to maintain privacy and sensitivity.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Share Known Wishes:</strong>
+                            <p>Discuss any preferences the deceased expressed about organ donation, cremation, or burial if known.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Identify Legal Next of Kin:</strong>
+                            <p>Ensure the legal next of kin is informed quickly, as they may need to make urgent decisions or sign necessary documents.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Find Essential Documents:</strong>
+                            <p>Look for any wills or end-of-life plans the deceased may have left, which could guide upcoming decisions.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Make Decisions Collectively:</strong>
+                            <p>Decide on immediate actions such as funeral arrangements in a manner that honors the deceased's wishes and considers the family's emotional and financial state.</p>
+                        </li>
+                    </ol>
+
+                    <div class="mt-4">
+                        <h6 class="fw-bold">Support Each Other:</h6>
+                        <p>As you navigate these steps, remember to provide emotional support to one another, recognizing that everyone processes grief differently.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="contact_immediate_family.html" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notify Close Friends Modal -->
+    <div class="modal fade" id="notifyFriendsModal" tabindex="-1" aria-labelledby="notifyFriendsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notifyFriendsModalLabel">Notifying Close Friends and Extended Family</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">Informing friends and extended family about a loved one's passing requires careful consideration and sensitivity.</p>
+
+                    <h6 class="fw-bold">Steps to Notify Friends and Extended Family:</h6>
+                    <ol class="light-300">
+                        <li class="mb-2">
+                            <strong>Create a Contact List:</strong>
+                            <p>Compile a list of close friends and extended family who need to be informed.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Assign Responsibilities:</strong>
+                            <ul class="ps-3">
+                                <li>Family Members: If possible, have each sibling notify their own branch of the family. If you are an only child or feel overwhelmed, ask close friends or extended family to assist.</li>
+                                <li>Trusted Friends: A close friend can help by reaching out to those in the deceased's personal address book or other important contacts.</li>
+                            </ul>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Choose Communication Methods:</strong>
+                            <ul class="ps-3">
+                                <li>Use phone calls for close relationships to maintain privacy and sensitivity.</li>
+                                <li>Opt for emails or messages for wider circles or when personal calls are challenging.</li>
+                            </ul>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Share Essential Information:</strong>
+                            <ul class="ps-3">
+                                <li>Service Details: Share funeral or memorial service plans if available. If details are still being arranged, let them know updates will follow.</li>
+                                <li>Family's Preferences: If the family prefers to grieve privately, you can mention that more specific plans will follow at a later time.</li>
+                                <li>Condolences: If the family welcomes condolences, provide information on where to send cards, messages, flowers.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="notify_family_guide.html" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notify Doctor Modal -->
+    <div class="modal fade" id="notifyDoctorModal" tabindex="-1" aria-labelledby="notifyDoctorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notifyDoctorModalLabel">Notifying Descendant's Doctor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">Informing your loved one's healthcare providers is an important step that should be taken promptly.</p>
+
+                    <h6 class="fw-bold">Steps to Notify Healthcare Providers:</h6>
+                    <ol class="light-300">
+                        <li class="mb-2">
+                            <strong>Primary Care Physician:</strong>
+                            <p>Contact the main doctor's office to inform them of the passing.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Specialists and Other Providers:</strong>
+                            <p>Notify any specialists or other healthcare providers who were actively involved in care.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Cancel Appointments:</strong>
+                            <p>Cancel any upcoming medical appointments or procedures.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Request Records:</strong>
+                            <p>Ask about the process for obtaining medical records if needed for insurance or legal purposes.</p>
+                        </li>
+                    </ol>
+
+                    <div class="alert alert-info mt-4">
+                        <p class="mb-0">Have the death certificate available, as some offices may request a copy for their records.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notify Employer Modal -->
+    <div class="modal fade" id="notifyEmployerModal" tabindex="-1" aria-labelledby="notifyEmployerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notifyEmployerModalLabel">Notifying Descendant's Employer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">Contact your loved one's employer to inform them of the passing and discuss important matters like final paycheck, benefits, and insurance.</p>
+
+                    <h6 class="fw-bold">Important Steps:</h6>
+                    <ol class="light-300">
+                        <li class="mb-2">
+                            <strong>Contact HR Department:</strong>
+                            <p>Reach out to the Human Resources department or immediate supervisor.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Discuss Benefits:</strong>
+                            <p>Inquire about:</p>
+                            <ul>
+                                <li>Life insurance policies</li>
+                                <li>Final paycheck</li>
+                                <li>Retirement accounts</li>
+                                <li>Healthcare benefits</li>
+                            </ul>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Request Documentation:</strong>
+                            <p>Ask what documentation they need (death certificate, etc.).</p>
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="notify_employer.html" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pet Care Modal -->
+    <div class="modal fade" id="petCareModal" tabindex="-1" aria-labelledby="petCareModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="petCareModalLabel">Pet Care Arrangements</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">Ensuring proper care for your loved one's pets is an important responsibility that requires immediate attention.</p>
+
+                    <h6 class="fw-bold">Immediate Steps:</h6>
+                    <ol class="light-300">
+                        <li class="mb-2">
+                            <strong>Locate Pets:</strong>
+                            <p>Ensure all pets are accounted for and have immediate care.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Review Instructions:</strong>
+                            <p>Check if the deceased left any specific instructions for pet care in their will or documents.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Temporary Care:</strong>
+                            <p>Arrange for immediate temporary care if needed:</p>
+                            <ul>
+                                <li>Family members</li>
+                                <li>Friends</li>
+                                <li>Professional pet sitters</li>
+                                <li>Local kennels</li>
+                            </ul>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Long-term Planning:</strong>
+                            <p>Discuss permanent arrangements with family members or explore adoption options if necessary.</p>
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Children Care Modal -->
+    <div class="modal fade" id="childrenCareModal" tabindex="-1" aria-labelledby="childrenCareModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="childrenCareModalLabel">Caring for Descendant's Children</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">When a parent passes away, ensuring their children's immediate well-being is a top priority. Here are essential steps to take:</p>
+
+                    <h6 class="fw-bold">Immediate Steps:</h6>
+                    <ol class="light-300">
+                        <li class="mb-2">
+                            <strong>Assess Current Situation:</strong>
+                            <ul>
+                                <li>Identify who is currently caring for the children</li>
+                                <li>Ensure they are in a safe and stable environment</li>
+                                <li>Maintain their regular routine as much as possible</li>
+                            </ul>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Review Legal Documents:</strong>
+                            <ul>
+                                <li>Check for any guardianship designations in the will</li>
+                                <li>Look for letters of intent regarding children's care</li>
+                                <li>Locate important documents (birth certificates, social security cards, etc.)</li>
+                            </ul>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Contact Support Systems:</strong>
+                            <ul>
+                                <li>Notify the children's school or daycare</li>
+                                <li>Inform their pediatrician</li>
+                                <li>Connect with family counselors or grief support services</li>
+                            </ul>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Address Immediate Needs:</strong>
+                            <ul>
+                                <li>Ensure access to necessary medications</li>
+                                <li>Maintain regular meals and routines</li>
+                                <li>Provide emotional support and stability</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="alert alert-info mt-4">
+                        <h6 class="fw-bold mb-2">Important Note:</h6>
+                        <p class="mb-0">If there are any concerns about immediate guardianship or custody, consult with a family law attorney as soon as possible to ensure proper legal procedures are followed.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Descendant's Wishes Modal -->
+    <div class="modal fade" id="descendantWishesModal" tabindex="-1" aria-labelledby="descendantWishesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="descendantWishesModalLabel">Understanding Your Options for a Loved One's Remains</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">Deciding how to handle a loved one's remains is a deeply personal choice. If no prior arrangements were made, consider the following factors:</p>
+
+                    <h6 class="fw-bold">Key Considerations:</h6>
+                    <ul class="light-300">
+                        <li class="mb-2">
+                            <strong>The Wishes of the Deceased</strong>
+                            <p>Check legal documents or discuss with family to determine their preferences.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Local Customs</strong>
+                            <p>Religious beliefs or cultural traditions may influence the decision.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Family & Community Feelings</strong>
+                            <p>Consider how others feel about burial, cremation, or donation.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Legal Requirements</strong>
+                            <p>Some areas have laws regarding burial, cremation, or body donation.</p>
+                        </li>
+                    </ul>
+
+                    <h6 class="fw-bold mt-4">Understand Your Options:</h6>
+                    <ul class="light-300">
+                        <li class="mb-3">
+                            <strong>Burial</strong>
+                            <ul>
+                                <li>Involves a casket and cemetery interment</li>
+                                <li>Costs may be based on embalming, plot, and maintenance</li>
+                                <li>Some financial aid is available for veterans or low-income families</li>
+                            </ul>
+                        </li>
+                        <li class="mb-3">
+                            <strong>Cremation</strong>
+                            <ul>
+                                <li>The body is respectfully processed into ashes, which can be kept, scattered, or buried</li>
+                                <li>Typically more affordable than burial</li>
+                                <li>Some locations may have legal restrictions</li>
+                            </ul>
+                        </li>
+                        <li class="mb-3">
+                            <strong>Body Donation</strong>
+                            <ul>
+                                <li>The body is donated for medical research</li>
+                                <li>Many programs provide free services and return ashes to the family, but eligibility varies</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="alert alert-info mt-4">
+                        <h6 class="fw-bold">Next Steps:</h6>
+                        <ul class="mb-0">
+                            <li>If choosing burial or cremation – Contact a funeral home or cremation provider</li>
+                            <li>If considering body donation – Reach out to a donation program for eligibility details</li>
+                            <li>Financial assistance – Ask the funeral home or local authorities about aid programs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="descendant_wishes.html" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Body Options Modal -->
+    <div class="modal fade" id="bodyOptionsModal" tabindex="-1" aria-labelledby="bodyOptionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bodyOptionsModalLabel">Understanding Your Options for a Loved One's Remains</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">Deciding how to handle a loved one's remains is a deeply personal choice. If no prior arrangements were made, consider the following factors:</p>
+
+                    <h6 class="fw-bold">Key Factors to Consider:</h6>
+                    <ul class="light-300">
+                        <li class="mb-2">
+                            <strong>The Wishes of the Deceased</strong>
+                            <p>Check legal documents or discuss with family to determine their preference.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Local Customs</strong>
+                            <p>Religious beliefs or cultural traditions may influence the decision.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Family & Community Feelings</strong>
+                            <p>Consider how others feel about burial, cremation, or donation.</p>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Legal Requirements</strong>
+                            <p>Some areas have laws regarding burial, cremation, or body donation.</p>
+                        </li>
+                    </ul>
+
+                    <h6 class="fw-bold mt-4">Understand Your Options:</h6>
+                    <ul class="light-300">
+                        <li class="mb-3">
+                            <strong>Burial</strong>
+                            <ul>
+                                <li>Involves a casket and cemetery interment</li>
+                                <li>Costs vary based on embalming, plot, and maintenance</li>
+                                <li>Some financial aid is available for veterans or low-income families</li>
+                            </ul>
+                        </li>
+                        <li class="mb-3">
+                            <strong>Cremation</strong>
+                            <ul>
+                                <li>The body is respectfully processed into ashes, which can be kept, scattered, or buried</li>
+                                <li>Typically more affordable than burial</li>
+                                <li>Some locations may have legal restrictions</li>
+                            </ul>
+                        </li>
+                        <li class="mb-3">
+                            <strong>Body Donation</strong>
+                            <ul>
+                                <li>The body is donated for medical research</li>
+                                <li>Many programs provide free cremation and return ashes to the family, but eligibility varies</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="alert alert-info mt-4">
+                        <h6 class="fw-bold">Next Steps:</h6>
+                        <ul class="mb-0">
+                            <li>If choosing burial or cremation – Contact a funeral home or cremation provider</li>
+                            <li>If considering body donation – Reach out to a donation program for eligibility details</li>
+                            <li>For financial assistance – Ask the funeral home or local authorities about aid programs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="body_options.html" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

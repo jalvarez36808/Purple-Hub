@@ -47,6 +47,35 @@
             height: 5px;
             background-color: #4caf50;
         }
+
+        /* Floating Button Styles */
+        .floating-button {
+            position: fixed;
+            bottom: 80px;
+            right: 40px;
+            background-color: #6266ea;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            background-color: #4a4db3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .floating-button i {
+            font-size: 20px;
+        }
     </style>
 <!--
      https://templatemo.com/tm-561-purple-buzz
@@ -187,7 +216,7 @@
                 <img class="service card-img" src="./assets/img/services-01.jpg" alt="Card image">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                 <div class="service-work-content text-left text-light">
-                    <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Practical Assistance</span>
+                    <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">How to Make Funeral Arrangements</span>
                     <p class="card-text">Funeral arrangements, whom to notify, writing an obituary, etc.</p>
                 </div>
                 </div>
@@ -247,25 +276,12 @@
             </div><!-- End Recent Work -->
 
             <!-- Start Recent Work -->
-            <div class="col-xl-3 col-md-4 col-sm-6 project legal">
-            <a href="questionnaire.html" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                <img class="card-img" src="./assets/img/Card Images/LawyrerCard.jpg" alt="Card image">
-                <div class="service-work-vertical card-img-overlay d-flex align-items-end">
-                <div class="service-work-content text-left text-light">
-                    <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Expert Lawyers</span>
-                    <p class="card-text">Take our questionnaire to determine the fiercest shark to close your case.</p>
-                </div>
-                </div>
-            </a>
-            </div><!-- End Recent Work -->
-
-            <!-- Start Recent Work -->
             <div class="col-xl-3 col-md-4 col-sm-6 project grief">
             <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
                 <img class="card-img" src="./assets/img/Card Images/services-07.jpg" alt="Card image">
                 <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                 <div class="service-work-content text-left text-light">
-                    <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Support</span>
+                    <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">Emotional Support</span>
                     <p class="card-text">Comprehensive support services & guidance to help you navigate through difficult times.</p>
                 </div>
                 </div>
@@ -444,6 +460,12 @@
     <script src="assets/js/templatemo.js"></script>
     <!-- Custom -->
     <script src="assets/js/custom.js"></script>
+
+    <!-- Floating Button -->
+    <a href="checklist_course.html" class="floating-button">
+        <i class='bx bx-clipboard'></i>
+        Go to Checklist
+    </a>
 
 </body>
 
