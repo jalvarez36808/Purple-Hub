@@ -1,6 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog } from '@headlessui/react';
-import { CheckIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { supabase } from '../lib/supabase';
+import { Link, useNavigate } from 'react-router-dom';
+
+// Add animation keyframe for fadeIn
+const fadeInAnimation = `
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+`;
 
 const checklistSections = {
   immediate: {
@@ -12,57 +31,141 @@ const checklistSections = {
           { id: 'contact-family', title: 'Contact Immediate Family', content: `In the difficult moments following a loved one's passing, connecting with immediate family is crucial for support and necessary decision-making.
 
 Steps to Contact Family:
-1. Call or Visit in Person
-2. Share the News Gently
-3. Gather Contact Information
-4. Discuss Next Steps
-5. Coordinate Initial Responsibilities` },
+1. Reach Out Promptly
+   • Notify key family members via personal phone calls or in-person meetings
+   • Maintain privacy and sensitivity
+   • If you are unable to reach them, leave a message with the funeral home or local authorities
+2. Share Known Wishes
+   • Discuss preferences about organ donation, cremation, or burial if known
+3. Identify Legal Next of Kin
+   • Ensure they are informed quickly
+   • They may need to make urgent decisions or sign documents
+4. Find Essential Documents
+   • Look for wills or end-of-life plans
+   • These can guide upcoming decisions
+5. Make Decisions Collectively
+   • Decide on immediate actions like funeral arrangements
+   • Honor the deceased's wishes
+   • Consider family's emotional and financial state
+
+Support Each Other:
+Remember to provide emotional support to one another, recognizing that everyone processes grief differently.` },
           { id: 'notify-friends', title: 'Notify Close Friends and Extended Family', content: `Informing friends and extended family requires sensitivity and coordination.
 
 Steps to Notify Others:
-1. Create Contact List
-2. Decide on Communication Method
-3. Share Essential Information
-4. Accept Offers of Help
-5. Keep Track of Responses` },
-          { id: 'notify-doctor', title: "Notify Descendant's Doctor", content: `Notifying the doctor is an important step for medical records and documentation.
+1. Create a Contact List
+   • Compile a list of close friends and extended family who need to be informed
+
+2. Assign Responsibilities
+   • Family Members: Have each sibling notify their own branch of the family
+   • Trusted Friends: Ask for help reaching out to those in the deceased's address book
+3. Choose Communication Methods
+   • Use phone calls for close relationships
+   • Opt for emails or messages for wider circles
+
+4. Share Essential Information
+   • Service Details: Share funeral or memorial service plans if available
+   • Family's Preferences: Communicate if the family needs privacy
+   • Condolences: Provide information on where to send messages, flowers, or donations` },
+          { id: 'notify-doctor', title: "Notify Descendant's Doctor", content: `Notifying your loved one's doctor is an important step, especially if they were under medical care.
 
 Steps to Notify Doctor:
-1. Contact Medical Office
-2. Provide Essential Information
-3. Request Medical Records
-4. Discuss Death Certificate
-5. Handle Outstanding Medical Matters` },
+1. Determine the Right Contact Person
+   • Identify which doctor needs to be informed
+   • This may be a primary care physician, specialist, or hospice provider
+
+2. Make the Call
+   • Contact the doctor's office
+   • Ask to speak with a staff member or nurse if the doctor is unavailable
+
+3. Provide Essential Information
+   • Share the deceased's full name and date of passing
+   • Ask about death certificate signing process
+
+4. Ask About Next Steps
+   • Inquire about additional paperwork
+   • Discuss accessing medical records
+   • Understand if an autopsy is required
+
+5. Close Any Remaining Medical Matters
+   • Address any long-term care or treatment matters
+   • Finalize medical records or notifications` },
           { id: 'notify-employer', title: "Notify Descendant's Employer", content: `Notifying the employer ensures proper handling of final payments and benefits.
 
 Steps to Notify Employer:
-1. Contact HR Department
-2. Provide Death Certificate
-3. Inquire About Benefits
-4. Discuss Final Paycheck
-5. Request Information About Life Insurance` }
+1. Prepare Required Documents
+   • Death certificate is typically required
+   • Gather any other relevant documentation
+
+2. Contact the Employer Promptly
+   • Call the human resources department
+   • For small businesses, speak with supervisor or owner
+   • Note: Limited information may be provided if you're not next of kin
+
+3. Ask About Final Pay and Benefits
+   • Unpaid wages, vacation, or sick time
+   • Death benefits and pensions
+   • 401(k) funds
+   • Employer-provided life insurance
+   • Health coverage for dependents (COBRA)
+
+Note: Some benefits are paid to named beneficiaries, while others may go through probate.` }
         ]
       },
       care: {
         title: 'Care',
         subtasks: [
-          { id: 'care-children', title: "Descendant's Children", content: `Ensuring immediate care for children is a top priority.
+          { id: 'care-children', title: "Descendant's Children", content: `Ensuring immediate care for children is a top priority after a loved one's passing.
 
 Steps for Children's Care:
-1. Ensure Immediate Safety
-2. Contact Legal Guardian
-3. Maintain Routine
-4. Arrange School Notifications
-5. Provide Emotional Support
-6. Consider Counseling` },
-          { id: 'care-pets', title: 'Pet Care', content: `Arranging care for pets requires immediate attention.
+1. Ensure Immediate Safety and Stability
+   • Keep children in a safe environment with a responsible adult
+   • Prioritize emotional needs, food, shelter, and routine care
+
+2. Communicate with Immediate Family
+   • Support surviving parent/guardian
+   • Respect their wishes about keeping children close or arranging help
+
+3. Arrange Temporary Care (If Needed)
+   • Identify trusted relatives or friends for short-term care
+   • Choose someone who can provide stability
+
+4. Determine Legal Guardianship
+   • Contact attorney if guardian is named in will
+   • Petition court if no guardian is named
+   • Consult family law attorney for guidance
+
+5. Provide Ongoing Support
+   • Maintain normal routines for stability
+   • Encourage open conversations about grief
+   • Consider counseling if needed` },
+          { id: 'care-pets', title: 'Pet Care', content: `Arranging care for pets requires immediate attention to ensure their wellbeing.
 
 Steps for Pet Care:
-1. Locate Pet Records
-2. Find Temporary Caregiver
-3. Maintain Pet's Schedule
-4. Contact Veterinarian
-5. Plan Long-term Care` }
+1. Meet Immediate Needs
+   • Provide food, water, and safe space
+   • Maintain routine to reduce anxiety
+
+2. Find a Temporary Caregiver
+   • Ask trusted family, friend, or neighbor
+   • Contact boarding facility if needed
+   • Reach out to rescue organizations
+
+3. Locate Important Pet Records
+   • Gather vaccination records
+   • Collect medical history
+   • Find microchip information
+   • Check for written care arrangements
+
+4. Arrange Long-Term Care
+   • Contact designated guardian if named in will
+   • Work with family to find new home
+   • Consider reputable shelters if needed
+
+5. Help the Pet Adjust
+   • Provide familiar items (bedding, toys)
+   • Ensure love and attention
+   • Maintain stability in new home` }
         ]
       },
       wishes: {
@@ -75,7 +178,10 @@ Steps to Determine Wishes:
 2. Check Legal Documents
 3. Consult Family Members
 4. Review Any Pre-arrangements
-5. Document All Findings` }
+5. Document All Findings`,
+            hasLandingPage: true,
+            landingPageUrl: '/learn/determining-wishes'
+          }
         ]
       },
       body: {
@@ -88,7 +194,10 @@ Factors to Consider:
 2. Religious/Cultural Beliefs
 3. Family Preferences
 4. Cost Considerations
-5. Timeline Requirements` },
+5. Timeline Requirements`,
+            hasLandingPage: true,
+            landingPageUrl: '/learn/understanding-remains-options'
+          },
           { id: 'transport-body', title: 'Arrange Transportation of the Body', content: `Proper transportation arrangements need to be made promptly.
 
 Transportation Steps:
@@ -96,7 +205,10 @@ Transportation Steps:
 2. Arrange Pick-up Location
 3. Complete Required Forms
 4. Coordinate Timing
-5. Confirm Transportation Details` }
+5. Confirm Transportation Details`,
+            hasLandingPage: true,
+            landingPageUrl: '/learn/body-transportation'
+          }
         ]
       },
       funeral: {
@@ -123,7 +235,10 @@ Steps to Find Will:
 2. Contact Attorney
 3. Check Safe Deposit Box
 4. Consult Family Members
-5. Check County Records` },
+5. Check County Records`,
+            hasLandingPage: true,
+            landingPageUrl: '/learn/finding-will'
+          },
           { id: 'probate-necessity', title: 'Is Probate Necessary?', content: `Understanding if probate is required for the estate.
 
 Determining Factors:
@@ -179,7 +294,10 @@ Writing Guidelines:
 2. Include Key Life Events
 3. List Survivors
 4. Add Service Details
-5. Proofread Carefully` },
+5. Proofread Carefully`,
+            hasLandingPage: true,
+            landingPageUrl: '/learn/write-obituary'
+          },
           { id: 'facebook-memorial', title: 'Create a Facebook Memorial Page', content: `Creating an online memorial space on Facebook.
 
 Setup Steps:
@@ -216,7 +334,10 @@ Information Needed:
 2. Military Service
 3. Religious Preferences
 4. Special Requests
-5. Family Traditions` },
+5. Family Traditions`,
+            hasLandingPage: true,
+            landingPageUrl: '/learn/collecting-memories'
+          },
           { id: 'collect-memories', title: 'Collect Memories for Funeral Service', content: `Gathering memories and materials for the service.
 
 Items to Collect:
@@ -225,54 +346,138 @@ Items to Collect:
 3. Achievement Records
 4. Special Mementos
 5. Video Clips` },
-          { id: 'arrange-officiant', title: 'Arrange for Officiant/Clergy', content: `Securing someone to lead the funeral service.
+          { id: 'arrange-officiant', title: 'Arrange for Officiant/Clergy', content: `Choosing someone to lead the funeral or memorial service helps set the tone for a meaningful tribute.
 
-Arrangement Steps:
-1. Choose Type of Service
-2. Contact Officiant
-3. Discuss Format
-4. Plan Readings
-5. Confirm Details` },
-          { id: 'arrange-music', title: 'Arrange Music', content: `Selecting and arranging music for the service.
+Options for Officiating the Service:
+• Religious Leader – A religious leader can lead a faith-based service
+• Funeral Home Officiant – Many funeral homes provide non-religious officiants
+• Family or Friend – A loved one can lead the service with personal reflections
 
-Music Planning:
-1. Choose Songs
-2. Contact Musicians
-3. Check Equipment
-4. Create Playlist
-5. Test Sound System` },
-          { id: 'flowers-donations', title: 'Request Flowers or Donations', content: `Managing flower arrangements and donation requests.
+Things to Discuss with the Officiant:
+• The structure and tone of the service
+• Readings or special tributes
+• Personal stories or messages to honor your loved one
+
+Selecting the right officiant ensures a service that reflects your loved one's beliefs, values, and the memories they leave behind.` },
+          { id: 'arrange-music', title: 'Arrange Music', content: `Music can bring comfort and meaning to a funeral or memorial service.
+
+Options for Including Music:
+• Play Recorded Music – Use a Bluetooth speaker or venue sound system
+• Group Singing – Choose meaningful, familiar songs for attendees
+• Live Performances – Invite family or friends to sing or play
+• Hire a Musician – Consider a professional singer or instrumentalist
+
+A thoughtful music selection can provide a touching tribute and bring a sense of connection to those gathered.` },
+          { id: 'flowers-donations', title: 'Request Flowers or Donations', content: `Managing flower arrangements and donation requests requires careful coordination.
 
 Organization Steps:
 1. Choose Florist
+   • Research local florists
+   • Compare prices and styles
+   • Check delivery options
+
 2. Select Arrangements
+   • Consider service venue size
+   • Choose meaningful flowers
+   • Coordinate color schemes
+
 3. Set Up Donations
+   • Select charitable organizations
+   • Create donation instructions
+   • Set up online giving options
+
 4. Communicate Preferences
-5. Track Contributions` },
-          { id: 'eulogies', title: 'Ask for Eulogies', content: `Coordinating eulogies for the service.
+   • Include in obituary
+   • Share with funeral home
+   • Inform family and friends
+
+5. Track Contributions
+   • Keep records of flowers received
+   • Monitor donation notifications
+   • Send acknowledgments` },
+          { id: 'eulogies', title: 'Ask for Eulogies', content: `Coordinating eulogies helps create a meaningful and personal service.
 
 Eulogy Planning:
 1. Choose Speakers
+   • Select those who knew your loved one well
+   • Consider different perspectives
+   • Ask early to allow preparation time
+
 2. Provide Guidelines
+   • Suggest time limits
+   • Share tone preferences
+   • Offer writing tips
+
 3. Set Time Limits
+   • Plan for multiple speakers
+   • Allow for emotions
+   • Keep overall timing in mind
+
 4. Arrange Order
-5. Offer Support` },
-          { id: 'guest-book', title: 'Set Up a Guest Book', content: `Preparing a guest book for the service.
+   • Create a speaking schedule
+   • Consider emotional impact
+   • Plan smooth transitions
+
+5. Offer Support
+   • Help with writing if needed
+   • Provide speaking tips
+   • Be available for practice` },
+          { id: 'guest-book', title: 'Set Up a Guest Book', content: `A guest book creates a lasting record of those who attended the service.
 
 Setup Steps:
 1. Purchase Book
+   • Choose an appropriate style
+   • Consider durability
+   • Get extra signing pages
+
 2. Create Sign-in Area
+   • Set up a well-lit table
+   • Arrange comfortable access
+   • Add meaningful decorations
+
 3. Provide Pens
+   • Have multiple pens ready
+   • Choose good quality ones
+   • Include extras as backup
+
 4. Assign Attendant
-5. Save Messages` },
-          { id: 'share-arrangements', title: 'Share Funeral Arrangements', content: `Communicating service details to family and friends.
+   • Ask someone to oversee
+   • Guide guests as needed
+   • Keep area organized
+
+5. Save Messages
+   • Collect all pages
+   • Store safely
+   • Consider digitizing` },
+          { id: 'share-arrangements', title: 'Share Funeral Arrangements', content: `Clear communication about service details helps family and friends plan to attend.
 
 Communication Steps:
 1. Create Announcement
+   • Include all essential details
+   • Date, time, and location
+   • Special instructions or requests
+
 2. Choose Platforms
+   • Social media
+   • Email
+   • Phone calls
+   • Traditional mail
+
 3. Include Details
+   • Service type
+   • Dress code if applicable
+   • Parking information
+   • Reception details
+
 4. Send Timely
-5. Follow Up` }
+   • Give adequate notice
+   • Consider travel needs
+   • Send reminders as needed
+
+5. Follow Up
+   • Confirm key participants
+   • Update with any changes
+   • Answer questions promptly` }
         ]
       },
       home: {
@@ -582,15 +787,139 @@ Planning Steps:
 export default function Checklist() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [completedTasks, setCompletedTasks] = useState(new Set());
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState({});
+  const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleTaskCompletion = (taskId) => {
-    const newCompletedTasks = new Set(completedTasks);
-    if (newCompletedTasks.has(taskId)) {
-      newCompletedTasks.delete(taskId);
-    } else {
-      newCompletedTasks.add(taskId);
+  useEffect(() => {
+    // Simple auth state subscription
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+      
+      // If user signs in, load their tasks
+      if (session?.user) {
+        loadUserTasks(session.user.id);
+      } else {
+        // Clear tasks if user signs out
+        setCompletedTasks(new Set());
+      }
+    });
+
+    // Initial session check
+    checkSession();
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  const checkSession = async () => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user ?? null);
+      
+      if (session?.user) {
+        await loadUserTasks(session.user.id);
+      }
+    } catch (error) {
+      console.error('Error checking session:', error);
     }
-    setCompletedTasks(newCompletedTasks);
+  };
+
+  const loadUserTasks = async (userId) => {
+    try {
+      setLoading(true);
+      const { data: userTasks, error: tasksError } = await supabase
+        .from('user_tasks')
+        .select('task_id')
+        .eq('user_id', userId)
+        .eq('status', 'completed');
+
+      if (tasksError) {
+        console.error('Error loading tasks:', tasksError);
+        return;
+      }
+
+      setCompletedTasks(new Set(userTasks?.map(task => task.task_id) || []));
+    } catch (error) {
+      console.error('Error loading user tasks:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleTaskCompletion = async (taskId) => {
+    const session = await checkSession();
+    if (!session) {
+      setIsSignInPopupOpen(true);
+      return;
+    }
+    if (saving) return; // Prevent multiple simultaneous saves
+
+    try {
+      setSaving(true);
+      const isCompleting = !completedTasks.has(taskId);
+      
+      // If user is authenticated, save to database first
+      if (user) {
+        if (isCompleting) {
+          // Add task
+          const { data, error: addError } = await supabase
+            .from('user_tasks')
+            .upsert({
+              user_id: user.id,
+              task_id: taskId,
+              status: 'completed',
+              completed_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            });
+
+          if (addError) {
+            console.error('Error adding task:', addError);
+            throw addError;
+          }
+        } else {
+          // Remove task
+          const { error: deleteError } = await supabase
+            .from('user_tasks')
+            .delete()
+            .match({ 
+              user_id: user.id, 
+              task_id: taskId 
+            });
+
+          if (deleteError) {
+            console.error('Error deleting task:', deleteError);
+            throw deleteError;
+          }
+        }
+
+        // Only update local state after successful database operation
+        const newCompletedTasks = new Set(completedTasks);
+        if (isCompleting) {
+          newCompletedTasks.add(taskId);
+        } else {
+          newCompletedTasks.delete(taskId);
+        }
+        setCompletedTasks(newCompletedTasks);
+      }
+    } catch (error) {
+      console.error('Error saving task progress:', error);
+      // Show error to user
+      alert('Failed to save your progress. Please try again.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const toggleCategory = (categoryKey) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [categoryKey]: !prev[categoryKey]
+    }));
   };
 
   const calculateProgress = () => {
@@ -617,172 +946,334 @@ export default function Checklist() {
 
   const progress = calculateProgress();
 
-  return (
-    <div className="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
-      <div className="px-4 sm:px-0">
-        <div className="mb-10 bg-white rounded-lg shadow-sm p-6">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Task Checklist</h1>
-          <p className="text-gray-600 mb-6">Track your progress through important tasks and responsibilities.</p>
-          <div className="mt-4">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium text-gray-700">
-                Progress ({progress.completed}/{progress.total} tasks completed)
-              </span>
-              <span className="text-sm font-medium text-purple-600">{progress.percentage}%</span>
-            </div>
-            <div className="w-full bg-gray-100 rounded-full h-3">
-              <div
-                className="bg-purple-600 h-3 rounded-full transition-all duration-500 ease-in-out"
-                style={{ width: `${progress.percentage}%` }}
-              ></div>
-            </div>
-          </div>
-        </div>
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#6266ea]"></div>
+      </div>
+    );
+  }
 
-        {Object.entries(checklistSections).map(([sectionKey, section]) => (
-          <div key={sectionKey} className="mb-12 bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200">{section.title}</h2>
-            {Object.entries(section.tasks).map(([categoryKey, category]) => (
-              <div key={categoryKey} className="mb-8 last:mb-0">
-                <h3 className="text-xl font-semibold text-purple-700 mb-4">{category.title}</h3>
-                <div className="space-y-4">
-                  {category.subtasks.map((task) => (
-                    <div
-                      key={task.id}
-                      className="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all duration-200"
-                    >
-                      <div className="flex items-center space-x-4">
-                        <button
-                          onClick={() => toggleTaskCompletion(task.id)}
-                          className={`w-6 h-6 rounded-md border-2 ${
-                            completedTasks.has(task.id)
-                              ? 'bg-purple-600 border-purple-600'
-                              : 'border-gray-300 hover:border-purple-400'
-                          } flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200`}
-                        >
-                          {completedTasks.has(task.id) && (
-                            <CheckIcon className="w-4 h-4 text-white" />
-                          )}
-                        </button>
-                        <span className={`text-gray-700 ${completedTasks.has(task.id) ? 'line-through text-gray-400' : ''}`}>
-                          {task.title}
-                        </span>
-                      </div>
-                      <button
-                        onClick={() => setSelectedTask(task)}
-                        className="flex items-center text-purple-600 hover:text-purple-700 text-sm font-medium px-3 py-1 rounded-md hover:bg-purple-50 transition-colors duration-200"
-                      >
-                        View Details
-                      </button>
+  return (
+    <div className="min-h-screen bg-gray-100 py-8">
+      {/* Sign In Popup */}
+      <Dialog
+        open={isSignInPopupOpen}
+        onClose={() => setIsSignInPopupOpen(false)}
+        className="relative z-50"
+      >
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+        
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="mx-auto max-w-sm rounded-lg bg-white p-6 shadow-xl animate-fadeIn">
+            <Dialog.Title className="text-lg font-medium text-gray-900 mb-4">
+              Sign in to use checklist
+            </Dialog.Title>
+            <Dialog.Description className="text-sm text-gray-500 mb-6">
+              Please sign in or create an account to track your progress.
+            </Dialog.Description>
+
+            <div className="mt-4 space-y-3">
+              <button
+                onClick={() => {
+                  setIsSignInPopupOpen(false);
+                  navigate('/signin');
+                }}
+                className="w-full inline-flex justify-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+              >
+                Sign In
+              </button>
+              
+              <button
+                onClick={() => {
+                  setIsSignInPopupOpen(false);
+                  navigate('/signup');
+                }}
+                className="w-full inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+              >
+                Create Account
+              </button>
+            </div>
+          </Dialog.Panel>
+        </div>
+      </Dialog>
+
+      <div className="max-w-7xl mx-auto py-2 sm:py-8 px-2 sm:px-6 lg:px-8 bg-gray-50">
+        <style dangerouslySetInnerHTML={{ __html: fadeInAnimation }} />
+        <div className="sm:px-0">
+          <div className="mb-4 sm:mb-10 bg-white rounded-xl shadow-sm p-3 sm:p-6 border border-gray-300">
+            <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">Task Checklist</h1>
+            <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-6">Track your progress through important tasks and responsibilities.</p>
+            
+            {!user && (
+              <div className="bg-gradient-to-r from-[#6266ea]/5 to-[#7c80ee]/5 border border-[#6266ea]/20 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-[#6266ea]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-xs sm:text-sm font-medium text-[#6266ea]">Sign in to save your progress</h3>
+                    <div className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-600">
+                      <p>Your progress will be saved automatically when you're signed in. <Link to="/signin" className="font-medium text-[#6266ea] hover:text-[#4232c2] underline">Sign in now</Link> to keep track of your completed tasks.</p>
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
-            ))}
+            )}
+
+            <div className="mt-3 sm:mt-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs sm:text-sm font-medium text-gray-600">
+                  Progress ({progress.completed}/{progress.total} tasks completed)
+                </span>
+                <span className="text-xs sm:text-sm font-medium text-[#6266ea]">{progress.percentage}%</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2.5 sm:h-3">
+                <div
+                  className="bg-gradient-to-r from-[#6266ea] to-[#7c80ee] h-2.5 sm:h-3 rounded-full transition-all duration-500 ease-in-out"
+                  style={{ width: `${progress.percentage}%` }}
+                ></div>
+              </div>
+            </div>
           </div>
-        ))}
 
-        <Dialog
-          open={selectedTask !== null}
-          onClose={() => setSelectedTask(null)}
-          className="fixed inset-0 z-10 overflow-y-auto"
-        >
-          <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <Dialog.Overlay 
-              className="fixed inset-0 bg-black transition-opacity duration-300 ease-in-out"
-              style={{
-                opacity: selectedTask ? '0.5' : '0',
-              }}
-            />
-
-            <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-            <div
-              className={`inline-block align-bottom bg-white rounded-2xl px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all duration-300 ease-out sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-8 ${
-                selectedTask
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-4'
-              }`}
-            >
-              {selectedTask && (
-                <>
-                  <div className="absolute top-0 right-0 pt-4 pr-4">
+          {Object.entries(checklistSections).map(([sectionKey, section]) => (
+            <div key={sectionKey} className="mb-4 sm:mb-12 bg-white rounded-xl shadow-sm p-3 sm:p-6 border border-gray-300">
+              <h2 className="text-lg sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-6 pb-2 sm:pb-3 border-b border-gray-300">
+                {section.title}
+              </h2>
+              
+              <div className="space-y-3 sm:space-y-4">
+                {Object.entries(section.tasks).map(([categoryKey, category]) => (
+                  <div key={categoryKey} className="rounded-xl border border-gray-300 bg-white hover:border-[#6266ea]/40 transition-colors duration-200">
                     <button
-                      type="button"
-                      className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                      onClick={() => setSelectedTask(null)}
+                      onClick={() => toggleCategory(`${sectionKey}-${categoryKey}`)}
+                      className="w-full flex items-center justify-between p-3 sm:p-4 text-left bg-gradient-to-r from-[#6266ea]/5 to-[#7c80ee]/5 hover:from-[#6266ea]/15 hover:to-[#7c80ee]/15 rounded-xl transition-all duration-200"
                     >
-                      <span className="sr-only">Close</span>
-                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
+                      <div className="flex items-center space-x-2">
+                        <h3 className="text-base sm:text-xl font-semibold text-[#6266ea] pr-2">
+                          {category.title} ({category.subtasks.filter(task => completedTasks.has(task.id)).length}/{category.subtasks.length})
+                        </h3>
+                        {category.subtasks.length > 0 && 
+                         category.subtasks.every(task => completedTasks.has(task.id)) && (
+                          <div className="flex items-center space-x-1 bg-[#6266ea]/10 text-[#6266ea] px-2 py-1 rounded-full text-xs font-medium animate-fadeIn">
+                            <CheckIcon className="w-3 h-3" />
+                            <span>Complete</span>
+                          </div>
+                        )}
+                      </div>
+                      <ChevronDownIcon 
+                        className={`w-5 h-5 flex-shrink-0 text-[#6266ea] transform transition-transform duration-300 ${
+                          expandedCategories[`${sectionKey}-${categoryKey}`] ? 'rotate-180' : ''
+                        }`}
+                      />
                     </button>
-                  </div>
-                  <div className="sm:flex sm:items-start">
-                    <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                      <Dialog.Title as="h3" className="text-2xl leading-6 font-bold text-gray-900 mb-6 pb-4 border-b border-gray-200">
-                        {selectedTask.title}
-                      </Dialog.Title>
-                      <div className="mt-6 space-y-8">
-                        {selectedTask.content.split('\n\n').map((block, blockIndex) => {
-                          if (block.includes(':')) {
-                            const [heading, ...items] = block.split('\n');
-                            return (
-                              <div key={blockIndex} className="space-y-4">
-                                <h4 className="text-lg font-semibold text-purple-700 mb-3">
-                                  {heading.replace(':', '')}
-                                </h4>
-                                <ul className="list-none space-y-4 pl-4">
-                                  {items.map((item, itemIndex) => {
-                                    if (item.trim().startsWith('•')) {
-                                      return (
-                                        <li key={itemIndex} className="text-gray-600 flex items-start">
-                                          <span className="text-purple-500 mr-3 text-lg">•</span>
-                                          <span className="leading-relaxed">{item.trim().substring(1)}</span>
-                                        </li>
-                                      );
-                                    }
-                                    if (item.trim().match(/^\d+\./)) {
-                                      return (
-                                        <li key={itemIndex} className="flex items-start space-x-4 text-gray-600">
-                                          <span className="font-semibold text-purple-600 min-w-[1.5rem] text-right">{item.split('.')[0]}.</span>
-                                          <span className="leading-relaxed flex-1">{item.split('.').slice(1).join('.').trim()}</span>
-                                        </li>
-                                      );
-                                    }
-                                    return (
-                                      <li key={itemIndex} className="text-gray-600 leading-relaxed">
-                                        {item.trim()}
-                                      </li>
-                                    );
-                                  })}
-                                </ul>
-                              </div>
-                            );
-                          }
-                          return (
-                            <p key={blockIndex} className="text-gray-600 leading-relaxed">
-                              {block}
-                            </p>
-                          );
-                        })}
+
+                    <div
+                      className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                        expandedCategories[`${sectionKey}-${categoryKey}`] 
+                          ? 'max-h-[2000px] opacity-100'
+                          : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div className="space-y-2 sm:space-y-4 p-2 sm:p-4">
+                        {category.subtasks.map((task) => (
+                          <div
+                            key={task.id}
+                            className="flex items-center justify-between p-2 sm:p-4 bg-white rounded-xl border border-gray-300 hover:border-[#6266ea]/40 hover:bg-gradient-to-r hover:from-[#6266ea]/[0.05] hover:to-[#7c80ee]/[0.05] transition-all duration-200"
+                          >
+                            <div className="flex items-start sm:items-center space-x-3 flex-grow min-w-0">
+                              <button
+                                onClick={() => toggleTaskCompletion(task.id)}
+                                className={`flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 mt-0.5 sm:mt-0 rounded-md border-2 ${
+                                  completedTasks.has(task.id)
+                                    ? 'bg-gradient-to-r from-[#6266ea] to-[#7c80ee] border-[#6266ea]'
+                                    : 'border-gray-300 hover:border-[#6266ea] hover:bg-[#6266ea]/[0.05]'
+                                } flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6266ea] transition-all duration-200`}
+                              >
+                                {completedTasks.has(task.id) && (
+                                  <CheckIcon className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                                )}
+                              </button>
+                              <span className={`text-sm sm:text-base ${
+                                completedTasks.has(task.id) 
+                                  ? 'text-gray-400 line-through' 
+                                  : 'text-gray-700'
+                              } truncate`}>
+                                {task.title}
+                              </span>
+                            </div>
+
+                            <button
+                              onClick={() => setSelectedTask(task)}
+                              className="flex-shrink-0 ml-2 flex items-center text-[#6266ea] hover:text-[#4232c2] text-xs sm:text-sm font-medium px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg hover:bg-[#6266ea]/10 transition-all duration-200"
+                            >
+                              <span className="hidden sm:inline">View Details</span>
+                              <span className="sm:hidden">View</span>
+                            </button>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
-                  <div className="mt-8 sm:mt-10">
-                    <button
-                      type="button"
-                      className="w-full inline-flex justify-center items-center rounded-xl border border-transparent shadow-sm px-6 py-3 bg-purple-600 text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:text-sm transition-all duration-200 hover:shadow-lg"
-                      onClick={() => setSelectedTask(null)}
-                    >
-                      Close
-                    </button>
-                  </div>
-                </>
-              )}
+                ))}
+              </div>
             </div>
-          </div>
-        </Dialog>
+          ))}
+
+          <Dialog
+            open={selectedTask !== null}
+            onClose={() => setSelectedTask(null)}
+            className="fixed inset-0 z-10 overflow-y-auto"
+          >
+            <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+              <Dialog.Overlay 
+                className="fixed inset-0 bg-gray-900/50 transition-opacity duration-300 ease-in-out backdrop-blur-sm"
+              />
+
+              <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+              <div
+                className={`inline-block align-bottom bg-white rounded-2xl px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all duration-300 ease-out sm:my-8 sm:align-middle sm:max-w-2xl w-full sm:p-8 relative ${
+                  selectedTask
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-4'
+                }`}
+              >
+                {selectedTask && (
+                  <>
+                    <div className="absolute top-0 right-0 pt-4 pr-4">
+                      <button
+                        type="button"
+                        className="bg-white rounded-lg text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#6266ea]"
+                        onClick={() => setSelectedTask(null)}
+                      >
+                        <span className="sr-only">Close</span>
+                        <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div className="sm:flex sm:items-start">
+                      <div className="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                        <Dialog.Title as="h3" className="text-xl sm:text-2xl leading-6 font-bold text-gray-900 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-300">
+                          {selectedTask.title}
+                        </Dialog.Title>
+                        <div className="mt-4 sm:mt-6 space-y-6 sm:space-y-8">
+                          {selectedTask.content.split('\n\n').map((block, blockIndex) => {
+                            // Handle introduction paragraph
+                            if (blockIndex === 0) {
+                              return (
+                                <div key={blockIndex} className="text-sm sm:text-base text-gray-600 leading-relaxed border-l-4 border-[#6266ea]/20 pl-4 py-2 bg-gradient-to-r from-[#6266ea]/5 to-transparent rounded-r-lg">
+                                  {block}
+                                </div>
+                              );
+                            }
+
+                            if (block.includes(':')) {
+                              const [heading, ...items] = block.split('\n');
+                              return (
+                                <div key={blockIndex} className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                                  <h4 className="text-base sm:text-lg font-semibold text-white mb-0 bg-gradient-to-r from-[#6266ea] to-[#7c80ee] px-4 py-2">
+                                    {heading.replace(':', '')}
+                                  </h4>
+                                  <div className="p-4">
+                                    <ul className="list-none space-y-4">
+                                      {items.map((item, itemIndex) => {
+                                        // Handle numbered steps
+                                        if (item.trim().match(/^\d+\./)) {
+                                          const [stepNum, ...stepContent] = item.trim().split('.');
+                                          const stepText = stepContent.join('.').trim();
+                                          const subItems = stepText.split('\n').filter(Boolean);
+                                          
+                                          return (
+                                            <li key={itemIndex} className="space-y-2">
+                                              <div className="flex items-start text-sm sm:text-base text-gray-600">
+                                                <span className="font-semibold text-[#6266ea] min-w-[2rem] sm:min-w-[2.5rem] text-right pr-3 pt-2">
+                                                  {stepNum}.
+                                                </span>
+                                                <div className="flex-1 space-y-2">
+                                                  {subItems.map((subItem, subIndex) => {
+                                                    const trimmedItem = subItem.trim();
+                                                    if (trimmedItem.startsWith('•')) {
+                                                      return (
+                                                        <div key={subIndex} className="flex items-start group hover:bg-[#6266ea]/5 rounded-lg p-2 transition-colors duration-200">
+                                                          <span className="text-[#6266ea] mr-2 sm:mr-3 text-base sm:text-lg group-hover:scale-110 transition-transform duration-200">—</span>
+                                                          <span className="leading-relaxed">{trimmedItem.substring(1).trim()}</span>
+                                                        </div>
+                                                      );
+                                                    }
+                                                    return (
+                                                      <div key={subIndex} className="font-medium text-gray-700 p-2">
+                                                        {trimmedItem}
+                                                      </div>
+                                                    );
+                                                  })}
+                                                </div>
+                                              </div>
+                                            </li>
+                                          );
+                                        }
+                                        
+                                        // Handle bullet points
+                                        if (item.trim().startsWith('•')) {
+                                          return (
+                                            <li key={itemIndex} className="flex items-start group hover:bg-[#6266ea]/5 rounded-lg p-2 transition-colors duration-200">
+                                              <span className="text-[#6266ea] mr-2 sm:mr-3 text-base sm:text-lg group-hover:scale-110 transition-transform duration-200">•</span>
+                                              <span className="leading-relaxed text-sm sm:text-base text-gray-600">{item.trim().substring(1)}</span>
+                                            </li>
+                                          );
+                                        }
+
+                                        // Handle plain text
+                                        return (
+                                          <li key={itemIndex} className="text-sm sm:text-base text-gray-600 leading-relaxed p-2">
+                                            {item.trim()}
+                                          </li>
+                                        );
+                                      })}
+                                    </ul>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            return (
+                              <p key={blockIndex} className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                                {block}
+                              </p>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-6 sm:mt-8">
+                      <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4">
+                        <button
+                          type="button"
+                          className="w-full sm:flex-1 inline-flex justify-center items-center rounded-xl border border-gray-300 shadow-sm px-4 sm:px-6 py-2 sm:py-3 bg-white text-sm sm:text-base font-medium text-gray-700 hover:text-[#6266ea] hover:border-[#6266ea]/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6266ea] transition-all duration-200"
+                          onClick={() => setSelectedTask(null)}
+                        >
+                          Close
+                        </button>
+                        {selectedTask.hasLandingPage && (
+                          <Link
+                            to={selectedTask.landingPageUrl}
+                            className="w-full sm:flex-1 inline-flex justify-center items-center rounded-xl border border-transparent shadow-sm px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-[#6266ea] to-[#7c80ee] text-sm sm:text-base font-medium text-white hover:from-[#4232c2] hover:to-[#6266ea] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6266ea] transition-all duration-200 hover:shadow-lg"
+                            onClick={() => setSelectedTask(null)}
+                          >
+                            Learn More
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </Dialog>
+        </div>
       </div>
     </div>
   );
