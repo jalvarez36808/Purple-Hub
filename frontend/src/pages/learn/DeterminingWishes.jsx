@@ -59,6 +59,7 @@ export default function DeterminingWishes() {
             <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
               <li>Many traditions have specific customs regarding burial, cremation, or body donation.</li>
               <li>If no instructions were left, consider what would best align with both the deceased's values and family preferences.</li>
+              <li>If there is uncertainty, consulting a spiritual leader may help.</li>
             </ul>
           </section>
 
@@ -67,7 +68,7 @@ export default function DeterminingWishes() {
             <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
               <li>If no explicit wishes were left, consider financial, logistical, and emotional factors when making a decision.</li>
               <li>Ensure decisions align with legal requirements in your state regarding burial, cremation, or donation.</li>
-              <li>If the estate has limited funds, financial assistance may be available for funeral costs.</li>
+              <li>Funeral homes and cremation providers can guide legal next steps.</li>
             </ul>
           </section>
         </div>

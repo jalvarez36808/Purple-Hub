@@ -88,6 +88,9 @@ export default function Navbar() {
                   <Link to="/checklist" className="text-[#6c757d] hover:text-[#6266ea] px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
                     Checklist
                   </Link>
+                  <Link to="/checklist-copy" className="text-[#6c757d] hover:text-[#6266ea] px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
+                    Checklist Copy
+                  </Link>
                   <Link to="/help" className="text-[#6c757d] hover:text-[#6266ea] px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
                     Help
                   </Link>
@@ -103,6 +106,9 @@ export default function Navbar() {
                   </Link>
                   <Link to="/checklist" className="text-[#6c757d] hover:text-[#6266ea] px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
                     Checklist
+                  </Link>
+                  <Link to="/checklist-copy" className="text-[#6c757d] hover:text-[#6266ea] px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
+                    Checklist Copy
                   </Link>
                   <Link to="/help" className="text-[#6c757d] hover:text-[#6266ea] px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
                     Help
@@ -151,6 +157,9 @@ export default function Navbar() {
                 <Link to="/checklist" onClick={() => setIsOpen(false)} className="block px-3 py-3 text-base font-medium text-[#6c757d] hover:text-[#6266ea] hover:bg-gray-50 rounded-md">
                   Checklist
                 </Link>
+                <Link to="/checklist-copy" onClick={() => setIsOpen(false)} className="block px-3 py-3 text-base font-medium text-[#6c757d] hover:text-[#6266ea] hover:bg-gray-50 rounded-md">
+                  Checklist Copy
+                </Link>
                 <Link to="/help" onClick={() => setIsOpen(false)} className="block px-3 py-3 text-base font-medium text-[#6c757d] hover:text-[#6266ea] hover:bg-gray-50 rounded-md">
                   Help
                 </Link>
@@ -171,6 +180,9 @@ export default function Navbar() {
                 </Link>
                 <Link to="/checklist" onClick={() => setIsOpen(false)} className="block px-3 py-3 text-base font-medium text-[#6c757d] hover:text-[#6266ea] hover:bg-gray-50 rounded-md">
                   Checklist
+                </Link>
+                <Link to="/checklist-copy" onClick={() => setIsOpen(false)} className="block px-3 py-3 text-base font-medium text-[#6c757d] hover:text-[#6266ea] hover:bg-gray-50 rounded-md">
+                  Checklist Copy
                 </Link>
                 <Link to="/help" onClick={() => setIsOpen(false)} className="block px-3 py-3 text-base font-medium text-[#6c757d] hover:text-[#6266ea] hover:bg-gray-50 rounded-md">
                   Help
@@ -235,4 +247,4 @@ export default function Navbar() {
       )}
     </>
   );
-} 
+}

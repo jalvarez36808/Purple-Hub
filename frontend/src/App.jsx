@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Checklist from './pages/Checklist'
+import ChecklistCopy from './pages/ChecklistCopy'
 import NotFound from './pages/NotFound'
 import DeterminingWishes from './pages/learn/DeterminingWishes'
 import UnderstandingRemainsOptions from './pages/learn/UnderstandingRemainsOptions'
@@ -77,6 +78,7 @@ function App() {
           }
         />
         <Route path="checklist" element={<Checklist />} />
+        <Route path="checklist-copy" element={<ChecklistCopy />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
@@ -100,4 +102,4 @@ function App() {
   )
 }
 
-export default App 
+export default App

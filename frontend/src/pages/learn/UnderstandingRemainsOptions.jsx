@@ -20,9 +20,8 @@ export default function UnderstandingRemainsOptions() {
         <h1 className="text-4xl font-bold text-[#212529] mb-8">Understanding Your Options for a Loved One's Remains</h1>
         
         <p className="text-[#6c757d] mb-8">
-          Choosing between cremation, burial, or body donation is a deeply personal decision. If no prior arrangements 
-          were made, family members will need to decide what best honors their loved one's wishes while considering 
-          practical, emotional and financial factors.
+          Choosing between cremation, burial, or body donation is a deeply personal decision. If no prior arrangements were made, 
+          family members will need to decide what best honors their loved one's wishes while considering practical, emotional and financial factors.
         </p>
 
         <h2 className="text-2xl font-semibold text-[#212529] mt-12 mb-6">Factors to Consider</h2>
@@ -63,123 +62,109 @@ export default function UnderstandingRemainsOptions() {
 
         <h2 className="text-2xl font-semibold text-[#212529] mt-12 mb-6">Understand Your Options</h2>
 
-        <div className="space-y-12">
-          <section className="bg-[#6266ea]/5 border border-[#6266ea]/10 rounded-xl p-6">
-            <h3 className="text-xl font-semibold text-[#212529] mb-4">Burial</h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-medium text-[#6266ea] mb-2">What It Involves:</h4>
-                <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-                  <li>The body is placed in a casket and interred in a cemetery.</li>
-                  <li>Options include traditional burial, green (eco-friendly) burial, or mausoleum entombment.</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-[#6266ea] mb-2">Considerations:</h4>
-                <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-                  <li>Requires embalming (in most cases), a burial plot, casket, and headstone.</li>
-                  <li>Can be one of the more expensive options due to cemetery space and maintenance fees.</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-[#6266ea] mb-2">Financial Assistance:</h4>
-                <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-                  <li>Eligible veterans may receive free or subsidized burial through the Veterans Affairs National Cemetery Administration.</li>
-                  <li>Some states or counties offer low-income burial assistance.</li>
-                  <li>Direct burial (without a formal service) is often a more affordable option.</li>
-                </ul>
-              </div>
-            </div>
+        <div className="space-y-10">
+          <section>
+            <h3 className="text-xl font-semibold text-[#6266ea] mb-4">Burial</h3>
+            
+            <h4 className="font-medium text-[#212529] mb-2">What It Involves:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-[#6c757d] mb-4">
+              <li>The body is placed in a casket and interred in a cemetery.</li>
+              <li>Options include traditional burial, green (eco-friendly) burial, or mausoleum entombment.</li>
+            </ul>
+            
+            <h4 className="font-medium text-[#212529] mb-2">Considerations:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-[#6c757d] mb-4">
+              <li>Requires embalming (in most cases), a burial plot, casket, and headstone.</li>
+              <li>Can be one of the more expensive options due to cemetery space and maintenance fees.</li>
+            </ul>
+            
+            <h4 className="font-medium text-[#212529] mb-2">Financial Assistance:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
+              <li>Eligible veterans may receive <strong>free or subsidized burial</strong> through the <a href="https://www.cem.va.gov/" className="text-[#6266ea] hover:text-[#4232c2]">Veterans Affairs National Cemetery Administration</a>.</li>
+              <li>Some states or counties offer <strong>low-income burial assistance</strong>.</li>
+              <li>Direct burial (without a formal service) is often a more affordable option.</li>
+            </ul>
           </section>
 
-          <section className="bg-[#6266ea]/5 border border-[#6266ea]/10 rounded-xl p-6">
-            <h3 className="text-xl font-semibold text-[#212529] mb-4">Cremation</h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-medium text-[#6266ea] mb-2">What It Involves:</h4>
-                <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-                  <li>The body is gently cremated, and the ashes can be kept, scattered, or buried.</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-[#6266ea] mb-2">Considerations:</h4>
-                <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-                  <li>Often more affordable and flexible than burial.</li>
-                  <li>Some areas have legal restrictions on where ashes can be scattered.</li>
-                  <li>Cultural views on cremation vary.</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-[#6266ea] mb-2">Financial Assistance:</h4>
-                <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-                  <li>Some states and counties provide cremation assistance programs for low-income families.</li>
-                  <li>Eligible veterans may receive cremation benefits through the VA National Cemetery Administration.</li>
-                </ul>
-              </div>
-            </div>
+          <section>
+            <h3 className="text-xl font-semibold text-[#6266ea] mb-4">Cremation</h3>
+            
+            <h4 className="font-medium text-[#212529] mb-2">What It Involves:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-[#6c757d] mb-4">
+              <li>The body is gently cremated, and the ashes can be kept, scattered, or buried.</li>
+            </ul>
+            
+            <h4 className="font-medium text-[#212529] mb-2">Considerations:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-[#6c757d] mb-4">
+              <li>Often more affordable and flexible than burial.</li>
+              <li>Some areas have legal restrictions on where ashes can be scattered.</li>
+              <li>Cultural views on cremation vary.</li>
+            </ul>
+            
+            <h4 className="font-medium text-[#212529] mb-2">Financial Assistance:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
+              <li>Some states and counties provide <strong>cremation assistance programs</strong> for low-income families.</li>
+              <li>Eligible veterans may receive <strong>cremation benefits</strong> through the <a href="https://www.cem.va.gov/" className="text-[#6266ea] hover:text-[#4232c2]">VA National Cemetery Administration</a>.</li>
+            </ul>
           </section>
 
-          <section className="bg-[#6266ea]/5 border border-[#6266ea]/10 rounded-xl p-6">
-            <h3 className="text-xl font-semibold text-[#212529] mb-4">Body Donation</h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-medium text-[#6266ea] mb-2">What It Involves:</h4>
-                <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-                  <li>The entire body is donated for medical research, training, or education.</li>
-                  <li>Many programs provide free cremation and return the ashes to the family, but policies vary.</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-[#6266ea] mb-2">Considerations:</h4>
-                <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-                  <li>Not all bodies are eligible (certain medical conditions may disqualify a donor).</li>
-                  <li>Some programs charge transportation or processing fees — check details before proceeding.</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-medium text-[#6266ea] mb-2">How to Donate:</h4>
-                <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-                  <li>Programs vary by state. Check this list for available options.</li>
-                  <li>Some universities and nonprofit organizations offer direct donation programs.</li>
-                </ul>
-              </div>
-            </div>
+          <section>
+            <h3 className="text-xl font-semibold text-[#6266ea] mb-4">Body Donation</h3>
+            
+            <h4 className="font-medium text-[#212529] mb-2">What It Involves:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-[#6c757d] mb-4">
+              <li>The entire body is donated for <strong>medical research, training, or education</strong>.</li>
+              <li>Many programs provide free cremation and return the ashes to the family, but policies vary.</li>
+            </ul>
+            
+            <h4 className="font-medium text-[#212529] mb-2">Considerations:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-[#6c757d] mb-4">
+              <li>Not all bodies are eligible (certain medical conditions may disqualify a donor).</li>
+              <li>Some programs charge transportation or processing fees — check details before proceeding.</li>
+            </ul>
+            
+            <h4 className="font-medium text-[#212529] mb-2">How to Donate:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
+              <li>Programs vary by state. Check <a href="https://www.sciencecare.com/locations" className="text-[#6266ea] hover:text-[#4232c2]">this list</a> for available options.</li>
+              <li>Some universities and nonprofit organizations offer direct donation programs.</li>
+            </ul>
           </section>
         </div>
 
-        <section className="mt-12">
+        <section className="mt-12 mb-12">
           <h2 className="text-2xl font-semibold text-[#212529] mb-6">Comparing the Costs of Each Option</h2>
+          
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full border-collapse border border-gray-300">
               <thead>
-                <tr>
-                  <th className="px-6 py-3 text-left text-[#212529] font-semibold">Option</th>
-                  <th className="px-6 py-3 text-left text-[#212529] font-semibold">Average Cost</th>
-                  <th className="px-6 py-3 text-left text-[#212529] font-semibold">Additional Fees</th>
+                <tr className="bg-gray-100">
+                  <th className="border border-gray-300 px-4 py-2 text-left">Option</th>
+                  <th className="border border-gray-300 px-4 py-2 text-left">Average Cost</th>
+                  <th className="border border-gray-300 px-4 py-2 text-left">Additional Fees</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody>
                 <tr>
-                  <td className="px-6 py-4 text-[#6c757d]">Burial</td>
-                  <td className="px-6 py-4 text-[#6c757d]">$7,000–$15,000+</td>
-                  <td className="px-6 py-4 text-[#6c757d]">Cemetery plot, embalming, casket, headstone, maintenance fees</td>
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Burial</td>
+                  <td className="border border-gray-300 px-4 py-2">$7,000–$15,000+</td>
+                  <td className="border border-gray-300 px-4 py-2">Cemetery plot, embalming, casket, headstone, maintenance fees</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Cremation</td>
+                  <td className="border border-gray-300 px-4 py-2">$1,000–$5,000</td>
+                  <td className="border border-gray-300 px-4 py-2">Urn, memorial service, scattering fees (if applicable)</td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 text-[#6c757d]">Cremation</td>
-                  <td className="px-6 py-4 text-[#6c757d]">$1,000–$5,000</td>
-                  <td className="px-6 py-4 text-[#6c757d]">Urn, memorial service, scattering fees (if applicable)</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 text-[#6c757d]">Body Donation</td>
-                  <td className="px-6 py-4 text-[#6c757d]">Usually Free</td>
-                  <td className="px-6 py-4 text-[#6c757d]">Some programs may charge transport or admin fees</td>
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Body Donation</td>
+                  <td className="border border-gray-300 px-4 py-2">Usually Free</td>
+                  <td className="border border-gray-300 px-4 py-2">Some programs may charge transport or admin fees</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        <section className="mt-12">
+        <section className="mt-12 bg-[#6266ea]/5 border border-[#6266ea]/10 rounded-xl p-6">
           <h2 className="text-2xl font-semibold text-[#212529] mb-6">Questions to Ask Yourself</h2>
           <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
             <li>Did my loved one express a preference?</li>
@@ -193,16 +178,16 @@ export default function UnderstandingRemainsOptions() {
         <section className="mt-12">
           <h2 className="text-2xl font-semibold text-[#212529] mb-6">Next Steps in Making Arrangements</h2>
           <ul className="list-disc pl-6 space-y-2 text-[#6c757d]">
-            <li>If choosing burial or cremation: Contact a funeral home or cremation provider as soon as possible.</li>
-            <li>If considering body donation: Contact a donation program to check eligibility and requirements.</li>
-            <li>For financial assistance: Ask the funeral home or local government about aid programs that may help cover costs.</li>
+            <li><strong>If choosing burial or cremation:</strong> Contact a funeral home or cremation provider as soon as possible.</li>
+            <li><strong>If considering body donation:</strong> Contact a donation program to check eligibility and requirements.</li>
+            <li><strong>For financial assistance:</strong> Ask the funeral home or local government about aid programs that may help cover costs.</li>
           </ul>
         </section>
 
         <p className="text-[#6c757d] mt-8">
-          Deciding how to honor a loved one's memory is deeply personal. While this choice can be difficult, 
-          focusing on what best reflects their wishes and supports your family can help. Thoughtfully considering 
-          your options can bring peace of mind and ensure you make the choice that feels right.
+          Deciding how to honor a loved one's memory is deeply personal. While this choice can be difficult, focusing on what best reflects 
+          their wishes and supports your family can help. Thoughtfully considering your options can bring peace of mind and ensure you make 
+          the choice that feels right.
         </p>
       </article>
 
