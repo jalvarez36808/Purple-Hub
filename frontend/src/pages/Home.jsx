@@ -82,7 +82,7 @@ export default function Home() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url("/ViteSite/GrievingWoman.png")',
+            backgroundImage: 'url("/GrievingWoman.png")',
             opacity: '0.9',
             filter: 'grayscale(20%) brightness(0.9)',
             mixBlendMode: 'multiply'

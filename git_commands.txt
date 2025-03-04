@@ -1,0 +1,24 @@
+# Run these commands in your PowerShell terminal
+
+# Navigate to your project root
+cd "C:\Users\Name\Desktop\website\Purple Hub"
+
+# Initialize Git repository (if not already initialized)
+git init
+
+# Add the remote repository
+git remote add origin https://github.com/jalvarez36808/Purple-Hub.git
+
+# Add all files to staging
+git add .
+
+# Commit the changes
+git commit -m "Initial commit with updated homepage and custom domain setup"
+
+# Push to the main branch
+# If your default branch is 'master' instead of 'main', replace 'main' with 'master'
+git push -u origin main
+
+# After successful push, deploy to GitHub Pages
+cd frontend
+npm run deploy 
